@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        .form-section .form-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form-section .form-row > div {
+            flex: 1 1 50%;
+            max-width: 50%;
+            padding: 0 15px;
+        }
+        .form-section .form-row .form-group {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>{{ form.instance.pk|yesno:"Edit,Add" }} Customer</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="card mb-3 form-section">
+                <div class="card-header">Customer Details</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <!-- Customer Details Fields -->
+                        <div>
+                            {{ form.salesperson.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.salesperson.id_for_label }}">Salesperson:</label>
+                                {{ form.salesperson }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.id_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.id_number.id_for_label }}">ID Number:</label>
+                                {{ form.id_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.name.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}">Name:</label>
+                                {{ form.name }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.arabic_name.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.arabic_name.id_for_label }}">Arabic Name:</label>
+                                {{ form.arabic_name }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.tax_registration_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.tax_registration_number.id_for_label }}">Tax Registration Number:</label>
+                                {{ form.tax_registration_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.tax_registration_date.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.tax_registration_date.id_for_label }}">Tax Registration Date:</label>
+                                {{ form.tax_registration_date }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.cr_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.cr_number.id_for_label }}">CR Number:</label>
+                                {{ form.cr_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.primary_contact.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.primary_contact.id_for_label }}">Primary Contact:</label>
+                                {{ form.primary_contact }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.mobile_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.mobile_number.id_for_label }}">Mobile Number:</label>
+                                {{ form.mobile_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.email.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">Email:</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.website.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.website.id_for_label }}">Website:</label>
+                                {{ form.website }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.tax_id.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.tax_id.id_for_label }}">Tax ID:</label>
+                                {{ form.tax_id }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.payment_terms.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.payment_terms.id_for_label }}">Payment Terms:</label>
+                                {{ form.payment_terms }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.status.errors }}
+                            <div class="form-group">
+                                <label>Status:</label><br>
+                                {{ form.status }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.branches.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.branches.id_for_label }}">Branches:</label>
+                                {{ form.branches }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 form-section">
+                <div class="card-header">Address</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <!-- Address Fields -->
+                        <div>
+                            {{ form.country.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.country.id_for_label }}">Country:</label>
+                                {{ form.country }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.city.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.city.id_for_label }}">City:</label>
+                                {{ form.city }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.region.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.region.id_for_label }}">Region:</label>
+                                {{ form.region }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.street.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.street.id_for_label }}">Street:</label>
+                                {{ form.street }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.area.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.area.id_for_label }}">Area:</label>
+                                {{ form.area }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.additional_street.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.additional_street.id_for_label }}">Additional Street:</label>
+                                {{ form.additional_street }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.additional_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.additional_number.id_for_label }}">Additional Number:</label>
+                                {{ form.additional_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.building_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.building_number.id_for_label }}">Building Number:</label>
+                                {{ form.building_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.unit_number.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.unit_number.id_for_label }}">Unit Number:</label>
+                                {{ form.unit_number }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.postal_code.errors }}
+                            <div class="form-group">
+                                <label for="{{ form.postal_code.id_for_label }}">Postal Code:</label>
+                                {{ form.postal_code }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a href="{% url 'customer_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const countryField = document.getElementById('{{ form.country.id_for_label }}');
+            const cityField = document.getElementById('{{ form.city.id_for_label }}');
+
+            const citiesByCountry = {
+                'Country 1': ['city1', 'city2'],
+                'Country 2': ['city3', 'city4'],
+            };
+
+            countryField.addEventListener('change', function () {
+                const selectedCountry = countryField.value;
+                const cities = citiesByCountry[selectedCountry] || [];
+
+                cityField.innerHTML = '';
+                cities.forEach(function (city) {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    cityField.appendChild(option);
+                });
+            });
+
+            // Trigger change event to populate cities on page load based on selected country
+            countryField.dispatchEvent(new Event('change'));
+        });
+    </script>
+</body>
+</html>

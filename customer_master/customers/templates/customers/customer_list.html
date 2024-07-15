@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Customer List</h2>
+        <a href="{% url 'add_customer' %}" class="btn btn-primary mb-3">Add Customer</a>
+
+        <form method="get" class="form-inline mb-3">
+            <input type="text" name="query" class="form-control mr-2" placeholder="Search..." value="{{ query }}">
+            <select name="salesperson" class="form-control mr-2">
+                <option value="">Select Salesperson</option>
+                {% for salesperson in salespersons %}
+                    <option value="{{ salesperson }}" {% if salesperson == request.GET.salesperson %}selected{% endif %}>{{ salesperson }}</option>
+                {% endfor %}
+            </select>
+            <select name="status" class="form-control mr-2">
+                <option value="">Select Status</option>
+                <option value="1" {% if status == "1" %}selected{% endif %}>Active</option>
+                <option value="0" {% if status == "0" %}selected{% endif %}>Inactive</option>
+            </select>
+            <button type="submit" class="btn btn-primary mr-2">Filter</button>
+            <a href="{% url 'customer_list' %}" class="btn btn-secondary">Clear</a>
+        </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Arabic Name</th>
+                    <th>Tax Registration Number</th>
+                    <th>CR Number</th>
+                    <th>Primary Contact</th>
+                    <th>Mobile</th>
+                    <th>Salesperson</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.id_number }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.arabic_name }}</td>
+                    <td>{{ customer.tax_registration_number }}</td>
+                    <td>{{ customer.cr_number }}</td>
+                    <td>{{ customer.primary_contact }}</td>
+                    <td>{{ customer.mobile_number }}</td>
+                    <td>{{ customer.salesperson }}</td>
+                    <td>{{ customer.status|yesno:"Active,Inactive" }}</td>
+                    <td>
+                        <a href="{% url 'edit_customer' customer.id %}" class="btn btn-warning">Edit</a>
+                        <form action="{% url 'delete_customer' customer.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
