@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <!-- Bootstrap Integration: Links to Bootstrap's CSS for styling-->
     <style>
         .form-group {
             margin-bottom: 1rem;
@@ -29,15 +30,17 @@
 <body>
     <div class="container mt-5">
         <h2>{{ form.instance.pk|yesno:"Edit,Add" }} Customer</h2>
-        <form method="post">
+        <form method="post"><!--Uses the POST method for form submission.-->
             {% csrf_token %}
             <div class="card mb-3 form-section">
                 <div class="card-header">Customer Details</div>
                 <div class="card-body">
                     <div class="form-row">
-                        <!-- Customer Details Fields -->
+                        <!-- Customer Details Fields ,Field Structure: Each field is wrapped in a div. The error messages are displayed, followed by the form field itself within a form-group.
+Label and Input: The label uses Django's id_for_label to link to the corresponding form field.-->
                         <div>
                             {{ form.salesperson.errors }}
+                            <!--n Django, form validation errors are automatically populated based on the form's validation logic.-->
                             <div class="form-group">
                                 <label for="{{ form.salesperson.id_for_label }}">Salesperson:</label>
                                 {{ form.salesperson }}
@@ -231,19 +234,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+                    // Get the country and city fields using Django's auto-generated ID
             const countryField = document.getElementById('{{ form.country.id_for_label }}');
             const cityField = document.getElementById('{{ form.city.id_for_label }}');
-
+        // Define the cities for each country
             const citiesByCountry = {
                 'Country 1': ['city1', 'city2'],
                 'Country 2': ['city3', 'city4'],
             };
 
             countryField.addEventListener('change', function () {
+                            // Get the selected country value
                 const selectedCountry = countryField.value;
+                            // Get the corresponding cities for the selected country
                 const cities = citiesByCountry[selectedCountry] || [];
 
                 cityField.innerHTML = '';
+
+                            // Add the new city options based on the selected country
                 cities.forEach(function (city) {
                     const option = document.createElement('option');
                     option.value = city;

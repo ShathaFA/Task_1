@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
 from multiselectfield import MultiSelectField
-
+#RegexValidator, MinLengthValidator, MaxLengthValidator: These are validators from django.core.validators used to enforce certain constraints on model fields.
 SALESPERSON_CHOICES = [
     ('salesperson1', 'Salesperson 1'),
     ('salesperson2', 'Salesperson 2'),

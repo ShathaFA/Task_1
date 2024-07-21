@@ -2,6 +2,10 @@
 
 from django import forms
 from .models import Customer
+"""class Meta: Provides metadata for the form.
+model = Customer: Specifies that this form is based on the Customer model.
+fields = 'all': Includes all fields from the Customer model in the form.
+widgets: Customizes the HTML widgets for specific fields"""
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -15,7 +19,7 @@ class CustomerForm(forms.ModelForm):
             'city': forms.Select(attrs={'class': 'form-control'}),
             'branches': forms.SelectMultiple(attrs={'class': 'form-control'}),  
         }
-
+#init method: Initializes the form and customizes specific field widgets
     def __init__(self, *args, **kwargs):
         super(CustomerForm, self).__init__(*args, **kwargs)
         self.fields['tax_registration_date'].widget = forms.DateInput(attrs={
